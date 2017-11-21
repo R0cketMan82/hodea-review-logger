@@ -88,6 +88,7 @@ def minder():
         print("ERROR: Stopping  minder! Please correct errors before proceeding.")
         return 
     print("read database:   OK")
+#Debug print; TODO remove
     print(minder_dict)
 
             

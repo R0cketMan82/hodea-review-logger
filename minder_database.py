@@ -7,6 +7,7 @@ Created on Tue Nov 21 19:04:16 2017
 import os
 import json
 
+
 jsonbody ='''{
 "minder_overview": [
 {
@@ -40,7 +41,12 @@ def read_db(dbdir):
         jvar = jvar + line 
 
     flog.close
-    Minderdict = json.loads(jvar)
+   
+    try:
+        Minderdict = json.loads(jvar)
+    except:
+        print("ERROR: Cannot read the database file. Empty?")
+        return None
     try:
         Minderdict['minder_overview'][0]['items_open']
         Minderdict['minder_overview'][0]['items_closed']
