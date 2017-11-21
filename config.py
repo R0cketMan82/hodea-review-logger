@@ -52,14 +52,35 @@ def read_config(cfgfile):
 # create config if not availeable and call read database
 ########################################################
 def Getconfig(topdir):
+    
+    filedir = topdir + r'/review_minder/minder.cfg'
 
     if not (os.path.isdir(topdir + r'/review_minder')):
         os.mkdir(topdir + r'/review_minder')
-    if not (os.path.exists(topdir + r'/review_minder/minder.cfg')):
-        flog = open(topdir + r'/review_minder/minder.cfg', 'w')   
+    if not (os.path.exists(filedir)):
+        flog = open(filedir, 'w')   
         flog.write(configtemplate) 
         flog.close()  
+        
+    try:    
+        read_config(filedir)['minder_cfg']['name']
+    except:
+        print("ERROR: Can't find configuration keyword 'name'")
+        return None
+       
+    try:    
+        read_config(filedir)['minder_cfg']['filetype']
+    except:
+        print("ERROR: Can't find configuration keyword 'filetype'")
+        return None
+        
+    try:    
+        read_config(filedir)['minder_cfg']['exclude']
+    except:
+        print("ERROR: Can't find configuration keyword 'exclude'")
+        return None
+        
          
-    return read_config(topdir + r'/review_minder/minder.cfg')
+    return read_config(filedir)
     
     

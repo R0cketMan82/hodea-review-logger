@@ -77,12 +77,13 @@ def minder():
     print('top-dir:  '+topdir)
     
     minder_cfg = Getconfig(topdir)
-    
-    print(minder_cfg['minder_cfg']['name'])
-    print(minder_cfg['minder_cfg']['filetype'])
-    print(minder_cfg['minder_cfg']['exclude'])
-    
-    
+    if minder_cfg is None:
+        print("ERROR: Stopping  minder! Please correct errors before proceeding.")
+        return 
+    print("read config: OK")
+
+            
+        
     
     
     #create html report out of database
