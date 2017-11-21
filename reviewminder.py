@@ -10,7 +10,8 @@ __version__ ="0.0.1 Alpha"
 
 import argparse
 import os
-from config import Getconfig 
+from minder_config import Getconfig 
+from minder_database import Getdb
 
     
 ########################################################
@@ -81,6 +82,8 @@ def minder():
         print("ERROR: Stopping  minder! Please correct errors before proceeding.")
         return 
     print("read config: OK")
+    
+    minder_db = Getdb(topdir)
 
             
         
