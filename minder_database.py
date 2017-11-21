@@ -4,24 +4,57 @@ Created on Tue Nov 21 19:04:16 2017
 
 @author: Daniel
 """
-
+import os
 import json
 
 jsonbody ='''{
-"overview": [
+"minder_overview": [
 {
-"iopen": 0,
-"iclosed": 0,
-"irejected" :0,
-"icomment": 0,
-"imajor": 0,
-"iminor": 0,
-"iundefined": 0
+"items_open": 0,
+"items_closed": 0,
+"items_rejected" :0
+},
+{
+"items_comment": 0,
+"items_major": 0,
+"items_minor": 0,
+"items_undefined": 0
 }
 ],
-"reviewitem": [
+"minder_items": [
 ]
 }'''
+
+
+########################################################
+# Function: 
+# read database
+######################################################## 
+def read_db(dbdir):
+    
+
+    jvar = ""
+    
+    flog = open(dbdir, 'r')
+    for line in flog:
+        jvar = jvar + line 
+
+    flog.close
+    Minderdict = json.loads(jvar)
+    try:
+        Minderdict['minder_overview'][0]['items_open']
+        Minderdict['minder_overview'][0]['items_closed']
+        Minderdict['minder_overview'][0]['items_rejected']
+        Minderdict['minder_overview'][1]['items_comment']
+        Minderdict['minder_overview'][1]['items_major']
+        Minderdict['minder_overview'][1]['items_minor']
+        Minderdict['minder_overview'][1]['items_undefined']
+        Minderdict['minder_items']
+    except:
+        print("ERROR: One or more database keywords has been changed.")
+        return None
+    return Minderdict
+    
 ########################################################
 # Function: 
 # create database if not availeable 
@@ -30,7 +63,7 @@ jsonbody ='''{
 def Getdb(topdir):
 
 
-    dbdir = topdir + r'/review_minder/reviewlog.db'
+    dbdir = topdir + r'/review_minder/minder.db'
 
     if not (os.path.isdir(topdir + r'\review')):
         os.mkdir(topdir + r'\review')
@@ -39,4 +72,4 @@ def Getdb(topdir):
         flog.write(jsonbody) 
         flog.close()  
          
-    read_db()
+    return read_db(dbdir)

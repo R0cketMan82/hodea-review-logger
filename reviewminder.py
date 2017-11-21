@@ -81,9 +81,14 @@ def minder():
     if minder_cfg is None:
         print("ERROR: Stopping  minder! Please correct errors before proceeding.")
         return 
-    print("read config: OK")
+    print("read config:     OK")
     
-    minder_db = Getdb(topdir)
+    minder_dict = Getdb(topdir)
+    if minder_dict is None:
+        print("ERROR: Stopping  minder! Please correct errors before proceeding.")
+        return 
+    print("read database:   OK")
+    print(minder_dict)
 
             
         

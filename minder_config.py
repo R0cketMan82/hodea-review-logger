@@ -81,6 +81,6 @@ def Getconfig(topdir):
         return None
         
          
-    return read_config(filedir)
+    return read_config(configdir)
     
     
